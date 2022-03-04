@@ -1,0 +1,20 @@
+.bg{
+    background: #eee;
+    padding: 0 0 10px 0;
+}
+
+h1.index{
+    font-family: Bitter;
+    text-align: center!important;
+    margin-top: 21px;
+    margin-bottom: 10.5px;
+}
+
+h2.index{
+    font-family: Bitter;
+    text-align: center!important;
+    color: #b2395b!important;
+    margin-top: 21px;
+    margin-bottom: 10.5px;
+}
+
