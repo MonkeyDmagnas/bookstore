@@ -1,12 +1,11 @@
 import React from 'react';
-import './banner.css';
+import './style.css';
 
-export default function Banner() {
+export default function Banner({children}) {
   return (
     <div className='bg'>
         <div className='container'>
-            <h1 class="index">Welcome to IT Bookstore</h1>
-            <h2 class="index">IT, Programming and Computer Science Books</h2>
+          {children}
         </div>
     </div>
   )
