@@ -16,3 +16,17 @@ h2.index {
   color: #b2395b !important;
   margin-bottom: 10.5px;
 }
+
+h1.single-book-title {
+  font-family: Bitter;
+  text-align: left !important;
+  padding-top: 21px;
+  margin-bottom: 10.5px;
+}
+
+h2.single-book-desc {
+  font-family: Bitter;
+  text-align: left !important;
+  color: #b2395b !important;
+  margin-bottom: 10.5px;
+}
