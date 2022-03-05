@@ -3,6 +3,12 @@ import './style.css';
 
 export default function Footer() {
   return (
-    <div>Footer</div>
+    <footer className='footer'>
+      <div className="container">
+        <div className="row">
+          <strong>Bookstore © {new Date().getFullYear()}</strong>
+        </div>
+      </div>  
+    </footer>
   )
 }

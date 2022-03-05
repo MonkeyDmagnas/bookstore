@@ -1,0 +1,73 @@
+section .breadcrumb {
+  display: flex;
+  margin-top: 3.6vh;
+}
+
+section .singlepage-book {
+  max-width: 1170px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+@media screen and (min-width: 992px) {
+  section .singlepage-book {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-gap: 2rem;
+    gap: 2rem;
+    align-items: center;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 21px;
+}
+
+.table-striped > tbody > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tbody > tr:nth-child(odd) > th {
+  background: #f9f9f9;
+}
+
+table > thead > tr > th,
+.table > thead > tr > th,
+table > tbody > tr > th,
+.table > tbody > tr > th,
+table > tfoot > tr > th,
+.table > tfoot > tr > th,
+table > thead > tr > td,
+.table > thead > tr > td,
+table > tbody > tr > td,
+.table > tbody > tr > td,
+table > tfoot > tr > td,
+.table > tfoot > tr > td {
+  border: none;
+}
+
+table > thead > tr > th,
+.table > thead > tr > th,
+table > tbody > tr > th,
+.table > tbody > tr > th,
+table > tfoot > tr > th,
+.table > tfoot > tr > th,
+table > thead > tr > td,
+.table > thead > tr > td,
+table > tbody > tr > td,
+.table > tbody > tr > td,
+table > tfoot > tr > td,
+.table > tfoot > tr > td {
+  border: none;
+  padding: 8px 30px;
+  line-height: 1.42;
+  vertical-align: top;
+}
+
+.color2 {
+  color: #b2395b;
+}

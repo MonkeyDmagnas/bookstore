@@ -9,7 +9,7 @@ export default function Header() {
       <div className='logo-bar'>
         <div className='logo-bar-content container'>
           <div className='logo-content'>
-            <a href='#'>
+            <a href='/'>
               <img src={Logo} alt='Logo' />
             </a>
           </div>

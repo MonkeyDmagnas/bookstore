@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header';
 import Home from './pages/home';
 import Footer from './components/footer/Footer';
-import SingleBook from './pages/singleBook';
+import SingleBook from './pages/singlebook/singleBook';
 import Error from './pages/error';
 
 export default function App() {
@@ -11,10 +11,11 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/books/:isbn13' element={<SingleBook />} />
-      <Route path='*' element={<Error />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/books/:isbn13' element={<SingleBook />} />
+        <Route path='*' element={<Error />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
