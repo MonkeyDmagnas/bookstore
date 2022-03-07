@@ -32,7 +32,7 @@ header .logo-bar .logo-bar-content .logo-content a img {
 }
 
 header .logo-bar .nav-search {
-  width: 600px;
+  width: 650px;
   display: inline-block;
   height: 45px;
   line-height: 45px;
@@ -101,6 +101,7 @@ header .logo-bar .nav-search {
 .cart-container {
   display: block;
   position: relative;
+  cursor: pointer;
 }
 header svg {
   width: 2rem;
@@ -123,3 +124,35 @@ header svg {
   margin-bottom: 0;
   font-size: 1.25rem;
 }
+
+.result-links{
+  background: white;
+}
+
+.result-links img{
+  width: 42px;
+  vertical-align: middle;
+}
+
+.result-links a {
+  color: hsl(209, 34%, 30%);
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: 0.1rem;
+  display: flex;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s linear;
+}
+.result-links a:hover {
+  background: #f5f5f5;
+  color: hsl(205, 78%, 60%);
+  padding-left: 1.5rem;
+}
+
+.search-result-container {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s linear;
+  margin-top: 2px;
+}
+

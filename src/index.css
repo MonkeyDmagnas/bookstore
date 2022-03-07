@@ -19,7 +19,7 @@ body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.42;
-  user-select: none;
+  user-select: text;
   overflow-x: hidden;
 }
 

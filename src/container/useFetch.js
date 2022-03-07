@@ -7,7 +7,7 @@ export const useFetch = (url) => {
     const fetchDate = useCallback(async() => {
     const response = await fetch(url);
     const dataFetch = await response.json();
-    // console.log(dataFetch);
+    console.log(dataFetch.books);
         setData(dataFetch.books);
         setIsLoading(false);
     }, [url]);

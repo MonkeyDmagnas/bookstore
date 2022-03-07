@@ -15,7 +15,7 @@ section .singlepage-book {
     grid-template-columns: 2fr 3fr;
     grid-gap: 2rem;
     gap: 2rem;
-    align-items: center;
+    align-items: flex-start;
   }
 }
 

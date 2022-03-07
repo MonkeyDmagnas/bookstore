@@ -1,21 +1,25 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import { FaStar } from "react-icons/fa";
 import Banner from '../../components/banner/Banner';
 import './style.css';
 
 const url = "https://api.itbook.store/1.0/books/"
 
-export default function SingleBook() {
-  const {isbn13} = useParams();
-  const [bookDetail, setBookDetail] = useState([]);
+const colors = {
+  orange: "#FFBA5A",
+  grey: "#a9a9a9"
+};
 
-  console.log(isbn13);
+export default function SingleBook() {
+  const [bookDetail, setBookDetail] = useState([]);
+  const {isbn13} = useParams();
+  const stars = Array(5).fill(0);
 
   const fetchData = useCallback(async() => {
   const response = await fetch(`${url}${isbn13}`);
   const dataFetch = await response.json();
-      setBookDetail(dataFetch);
-      console.log(dataFetch);
+    setBookDetail(dataFetch);
   }, [isbn13]); 
 
   useEffect(() => {
@@ -45,26 +49,18 @@ export default function SingleBook() {
         <div className="container">
           <div className="breadcrumb">
             <a href="/" title="IT Bookstore">Bookstore</a>
-            <p>&gt;</p>
-            <a href="#" title="Books">Books</a>
-            <p>&gt;</p>
-            <b>{title}</b>
+            <p>&nbsp;&gt;</p>
+            <a href="#" title="Books">&nbsp;Books</a>
+            <p>&nbsp;&gt;</p>
+            <b>&nbsp;{title}</b>
           </div>
           <div className="singlepage-book">
-            <img src={image} alt="" />
+            <img src={image} alt="" title={title} />
             <table className="table table-striped">
               <tbody>
                 <tr>
                   <td>Title</td>
-                  <td>
-                    <strong>{title}</strong>
-                  </td>
-                </tr> 
-                <tr>
-                  <td>Description</td>
-                  <td>
-                    <strong>{desc}</strong>
-                  </td>
+                  <td><strong>{title}</strong></td>
                 </tr> 
                 <tr>
                   <td>Price</td>
@@ -74,40 +70,45 @@ export default function SingleBook() {
                 </tr> 
                 <tr>
                   <td>Author</td>
-                  <td>
-                    <strong>{authors}</strong>
-                  </td>
+                  <td><strong>{authors}</strong></td>
                 </tr> 
                 <tr>
                   <td>Publisher</td>
-                  <td>
-                    <strong>{publisher}</strong>
-                  </td>
+                  <td><strong>{publisher}</strong></td>
                 </tr> 
                 <tr>
                   <td>Language</td>
-                  <td>
-                    <strong>{language}</strong>
-                  </td>
+                  <td><strong>{language}</strong></td>
                 </tr> 
                 <tr>
                   <td>Rating</td>
                   <td>
-                    <strong>{rating}</strong>
+                    {stars.map((_, index) => {
+                      return (
+                        <FaStar
+                          key={index}
+                          color={rating > index ? colors.orange : colors.grey}
+                          style={{
+                            marginRight: 10,
+                            cursor: "pointer"
+                          }}
+                        />
+                      );
+                    })}
                   </td>
                 </tr> 
                 <tr>
                   <td>Year</td>
-                  <td>
-                    <a href="#"><strong>{year}</strong></a>
-                  </td>
+                  <td><a href="#"><strong>{year}</strong></a></td>
                 </tr> 
                 <tr>
                   <td>Pages</td>
-                  <td>
-                    <strong>{`${pages} pages`}</strong>
-                  </td>
-                </tr>                                                                                                                                                                                                                                                               
+                  <td><strong>{`${pages} pages`}</strong></td>
+                </tr> 
+                <tr>
+                  <td>Description</td>
+                  <td><strong>{desc}</strong></td>
+                </tr> 
               </tbody>
             </table>
           </div>

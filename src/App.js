@@ -5,13 +5,15 @@ import Home from './pages/home';
 import Footer from './components/footer/Footer';
 import SingleBook from './pages/singlebook/singleBook';
 import Error from './pages/error';
+import SearchBooks from './pages/searchBookList/searchBooks';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path='/' element={<Home />} />
+        {/* <Route path='/' element={<Home />} /> */}
+        <Route path='/' element={<SearchBooks />} />
         <Route path='/books/:isbn13' element={<SingleBook />} />
         <Route path='*' element={<Error />} />
       </Routes>
