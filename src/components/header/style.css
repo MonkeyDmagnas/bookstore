@@ -48,7 +48,6 @@ header .logo-bar .nav-search {
 }
 
 .search-box-bar {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -125,11 +124,11 @@ header svg {
   font-size: 1.25rem;
 }
 
-.result-links{
+.result-links {
   background: white;
 }
 
-.result-links img{
+.result-links img {
   width: 42px;
   vertical-align: middle;
 }
@@ -149,10 +148,14 @@ header svg {
   padding-left: 1.5rem;
 }
 
+.search-result-container-active {
+  height: 0;
+  transition: all 0.3s linear;
+  margin-top: 2px;
+}
 .search-result-container {
   height: 0;
   overflow: hidden;
   transition: all 0.3s linear;
   margin-top: 2px;
 }
-

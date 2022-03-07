@@ -1,32 +1,46 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useGlobalContext } from '../../container/context';
 import './style.css';
 
-export default function searchBooks() {
+export default function SearchBooks() {
+  const {searchBookList, search} = useGlobalContext();
+  console.log(searchBookList);
 
   return (
     <>
       <section>
         <div className="container">
           <div className="searchtitle">
-              <h1>"aliasing-in-object-oriented-programming" search results</h1>
-            <p>Found <strong>7219</strong> books</p>
+              <h1>{`"${search}" search results`}</h1>
+            <p>Found <strong>{searchBookList.total}</strong> books</p>
           </div>
         </div>
-        <div className='contianer search-container'>        
-          <div className="search-book-list">
-            <img src="https://ecolechezdonald.com/wp-content/uploads/2020/05/book-img2.jpg"
-            alt="" title="photo here"  />
-            <div className='search-book-desc'>
-                <h1>MongoDB Full crashcourse book</h1>
-                <p className='author'>by <strong>Alil Maharjan</strong></p>
-                <p>This book presents a survey of the state-of-the-art on techniques for dealing with aliasing in object-oriented programming. It marks the 20th anniversary of the paper The Geneva Convention On The Treatment of Object Aliasing by John Hogg, Doug Lea, Alan Wills, Dennis de Champeaux and Richard Holt. The 22 revised papers were carefully revi...</p>
-                <p className='desc-tag'>
-                    <small>Price: &nbsp;</small><strong class="price">$80.81</strong> &emsp;|&emsp; 
-                    <small>Publisher: &nbsp;<strong>Springer</strong> &emsp;|&emsp; 
-                    Release: &nbsp;<strong>2013</strong></small></p>                
+        {searchBookList.books.map((bookinfo) => {
+          const {title, isbn13, price, subtitle, image} = bookinfo;
+
+          return(
+            <div className='contianer search-container' key={isbn13}>        
+              <div className="search-book-list">
+                <a href={`../books/${isbn13}`}>
+                  <img src={image}
+                  alt={title} title={title}  />
+                </a>
+                <div className='search-book-desc'>
+                  <a href={`../books/${isbn13}`}>
+                    <h1>{title}</h1>
+                  </a>
+                    <p>{subtitle}</p>
+                    <p className='desc-tag'>
+                        <small>Price: &nbsp;</small>
+                        <strong>
+                          <p className='color2'>{price === `$0.00` ? 'Free Book' : `${price}`}</p>
+                        </strong>
+                    </p>              
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </section>
     </>
   )

@@ -1,38 +1,36 @@
 import React, {useState, useRef, useEffect} from 'react';
-import { useFetch } from '../../container/useFetch';
+import { useGlobalContext, useNavigateSearch } from '../../container/context';
 import SearchLogo from '../../images/search.png';
 
-const url = "https://api.itbook.store/1.0/search/mongodb";
-
-
 export default function SearchBox() {
-    const [toggleLinks, setToogleLinks] = useState(true);
-    const {data} = useFetch(url);
     const searchResultRef = useRef(null);
     const resultLinkRef = useRef(null); 
     const searchRefContainer = useRef('');
+    const {search,setSearch, bookSearch, toggleLinks, setToogleLinks} = useGlobalContext();
 
-    const [search, setSearch] = useState();
-
+    const navigateSearch = useNavigateSearch();
 
     const submitSearch = (e) => {
         e.preventDefault();
-        // console.log("hi");
+        navigateSearch("/search", {q: `${search}`});
+        setToogleLinks(false);
     }
     
     const searchData = () => {
+        setToogleLinks(true);        
         setSearch(searchRefContainer.current.value);
     }
 
-
-    useEffect(() => {
-        searchRefContainer.current.focus();
-    }, [])
+    const closeMenuList = (e) => {
+        if(!e.target.classList.contains('result-links')) {
+            setToogleLinks(false);
+        }
+    }
 
 
     useEffect(() => {
         const linksHeight = resultLinkRef.current.getBoundingClientRect().height;
-        console.log(linksHeight);
+        // console.log(linksHeight);
         if(toggleLinks) {
             searchResultRef.current.style.height = `${linksHeight}px`;
         }
@@ -42,8 +40,9 @@ export default function SearchBox() {
     },[toggleLinks]);    
 
     return (
-        <div className='nav-search'>
-            <form onSubmit={submitSearch}>
+        <div className='nav-search' onClick={closeMenuList}>
+            <form onSubmit={submitSearch}>            
+            {/* <form action={`/search/?q=${search}`} method='get'> */}
                 <div className='search-box'>
                     <div className='search-box-bar'>
                         <input
@@ -54,18 +53,11 @@ export default function SearchBox() {
                         onChange={searchData}
                         />
                     </div>
-                    <div className='search-box-search'>
-                        <button className='button-search-box'>
-                            <img src={SearchLogo} alt='search' />
-                        </button>
-                    </div>
-                </div>
-            </form>
                     {/* div for search drop */}
 
-                    <div className='search-result-container' ref={searchResultRef}>
+                    <div className={toggleLinks ? 'search-result-container-active' : 'search-result-container'} ref={searchResultRef}>
                         <ul className='result-links' ref={resultLinkRef}>
-                            {data.slice(0,6).map((searchLink) => {
+                            {bookSearch.slice(0,6).map((searchLink) => {
                             // console.log(navLinks);
                                 const {isbn13, title, image} = searchLink;
                                 return(
@@ -81,6 +73,14 @@ export default function SearchBox() {
                              })}                            
                         </ul>
                     </div>            
+                    <div className='search-box-search'>
+                        <button className='button-search-box'>                        
+                        {/* <button className='button-search-box' type='submit'> */}
+                            <img src={SearchLogo} alt='search' />
+                        </button>
+                    </div>
+                </div>
+            </form>
 
         </div>
     )

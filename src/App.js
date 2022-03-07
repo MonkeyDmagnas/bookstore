@@ -12,9 +12,10 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        {/* <Route path='/' element={<Home />} /> */}
-        <Route path='/' element={<SearchBooks />} />
+        <Route path='/' element={<Home />} />
+        {/* <Route path='/' element={<SearchBooks />} /> */}
         <Route path='/books/:isbn13' element={<SingleBook />} />
+        <Route path=':title' element={<SearchBooks />} />
         <Route path='*' element={<Error />} />
       </Routes>
       <Footer />
