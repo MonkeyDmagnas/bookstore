@@ -4,7 +4,7 @@ import './style.css';
 
 export default function SearchBooks() {
   const {searchBookList, search} = useGlobalContext();
-  console.log(searchBookList);
+  // console.log(searchBookList);
 
   return (
     <>

@@ -6,7 +6,13 @@ export default function SearchBox() {
     const searchResultRef = useRef(null);
     const resultLinkRef = useRef(null); 
     const searchRefContainer = useRef('');
-    const {search,setSearch, bookSearch, toggleLinks, setToogleLinks} = useGlobalContext();
+    const {
+        search,
+        setSearch,
+        bookSearch,
+        toggleLinks,
+        setToogleLinks,
+    } = useGlobalContext();
 
     const navigateSearch = useNavigateSearch();
 
@@ -63,7 +69,7 @@ export default function SearchBox() {
                                 return(
                                     <li key={isbn13}>
                                         <div className='eac-item'>                                        
-                                            <a href={`books/${isbn13}`}>
+                                            <a href={`${title}`}>
                                                 <img src={image} alt={title} />
                                                 <p style={{padding: "0 0.8rem"}}>{title}</p>
                                             </a>
