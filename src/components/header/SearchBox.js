@@ -39,7 +39,6 @@ export default function SearchBox() {
 
     useEffect(() => {
         const linksHeight = resultLinkRef.current.getBoundingClientRect().height;
-        // console.log(linksHeight);
         if(toggleLinks) {
             searchResultRef.current.style.height = `${linksHeight}px`;
         }
@@ -51,7 +50,6 @@ export default function SearchBox() {
     return (
         <div className='nav-search' onClick={closeMenuList}>
             <form onSubmit={submitSearch}>            
-            {/* <form action={`/search/?q=${search}`} method='get'> */}
                 <div className='search-box'>
                     <div className='search-box-bar'>
                         <input
@@ -63,8 +61,6 @@ export default function SearchBox() {
                         onChange={searchData}
                         />
                     </div>
-                    {/* div for search drop */}
-
                     <div className={toggleLinks ? 'search-result-container-active' : 'search-result-container'} ref={searchResultRef}>
                         <ul className='result-links' ref={resultLinkRef}>
                             {bookSearch.slice(0,6).map((searchLink) => {
@@ -84,7 +80,6 @@ export default function SearchBox() {
                     </div>            
                     <div className='search-box-search'>
                         <button className='button-search-box'>                        
-                        {/* <button className='button-search-box' type='submit'> */}
                             <img src={SearchLogo} alt='search' />
                         </button>
                     </div>

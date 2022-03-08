@@ -4,7 +4,7 @@ import Header from './components/header/Header';
 import Home from './pages/home';
 import Footer from './components/footer/Footer';
 import SingleBook from './pages/singlebook/singleBook';
-import Cart from './pages/cart';
+import Cart from './pages/cart/cart';
 import Error from './pages/error';
 import SearchBooks from './pages/searchBookList/searchBooks';
 

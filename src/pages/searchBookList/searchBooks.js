@@ -52,8 +52,8 @@ export default function SearchBooks() {
           nextLabel={'next'}
           breakLabel={'...'}
           pageCount={Math.ceil(searchBookList.total/10)}
-          marginPagesDisplayed={3}
-          pageRangeDisplayed={6}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={4}
           onPageChange={handlePageClick}
           containerClassName={'pagination'}
           pageClassName={'selected'}

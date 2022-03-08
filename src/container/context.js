@@ -34,6 +34,7 @@ const cartlistStorage = () => {
   }
 };
 
+
 const bookurl = "https://api.itbook.store/1.0/books/";
 const url = "https://api.itbook.store/1.0/search/";
 const AppContext = React.createContext();
@@ -51,7 +52,6 @@ export function AppProvider({children}) {
     const [pagination, setPagination] = useState(1);
 
     // addtocart
-    const [itemAdded, setItemAdded] = useState(0);
     const [isbn, setIsbn] = useState([]);
     const [retrived, setRetrived] = useState(cartlistStorage());
 
@@ -81,7 +81,6 @@ export function AppProvider({children}) {
     
   
   const addtocart = useCallback((isbn13) => {
-    setItemAdded(itemAdded + 1);
     setIsbn([...isbn, isbn13]);
   });
 
@@ -89,8 +88,7 @@ export function AppProvider({children}) {
   const fetchBookData = useCallback(async() => {
   const response = await fetch(`${bookurl}${isbn}`);
   const dataFetch = await response.json();
-  console.log(dataFetch);
-    setRetrived(dataFetch);
+    setRetrived([...retrived, dataFetch]);
   }, [isbn]);   
 
 
@@ -103,12 +101,12 @@ export function AppProvider({children}) {
     fetchDataBookList();
     localStorage.setItem('constantSearch', JSON.stringify(constantSearch));
     localStorage.setItem('searchBookList', JSON.stringify(searchBookList));
-  },[pagination, fetchDataBookList]);
+  },[pagination, fetchDataBookList,constantSearch,searchBookList]);
 
   useEffect(() => {
     fetchBookData();
     localStorage.setItem('retrived', JSON.stringify(retrived));
-  },[itemAdded,fetchBookData])
+  },[retrived,fetchBookData])
 
 
     return (
@@ -122,7 +120,6 @@ export function AppProvider({children}) {
             setConstantSearch,
             searchBookList,
             setPagination,
-            itemAdded,
             retrived,
             addtocart
         }}>

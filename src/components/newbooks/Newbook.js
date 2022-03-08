@@ -15,7 +15,7 @@ export default function Newbook() {
               </h3>
               <div className="book-center">
                   {data.map((newbooks) => {
-                      const {image, isbn13, price, title, url} = newbooks;
+                      const {image, isbn13, price, title} = newbooks;
                       return ( 
                         <article className='book' key={isbn13}>
                             <a href={`books/${isbn13}`} className="img-container">
@@ -24,7 +24,6 @@ export default function Newbook() {
                             <div className="book-info">
                                 <a href={`books/${isbn13}`} title={title}>{title}</a>
                                 <p>{price === `$0.00` ? 'Free Book' : `${price}`}</p>
-
                             </div>
                         </article>                                                                       
                       );

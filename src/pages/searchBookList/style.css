@@ -79,6 +79,7 @@ section .search-book-desc {
 
 .pagination {
   display: inline-flex;
+  margin-top: 8vh;
 }
 
 .pagination a {
