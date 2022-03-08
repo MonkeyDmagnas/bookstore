@@ -23,6 +23,18 @@ const booklistStorage = () => {
   }
 };
 
+const cartlistStorage = () => {
+  let retrived = localStorage.getItem('retrived');
+  if (retrived) {
+    return (
+      retrived = JSON.parse(localStorage.getItem('retrived'))
+      );
+  } else {
+    return [];
+  }
+};
+
+const bookurl = "https://api.itbook.store/1.0/books/";
 const url = "https://api.itbook.store/1.0/search/";
 const AppContext = React.createContext();
 
@@ -40,9 +52,8 @@ export function AppProvider({children}) {
 
     // addtocart
     const [itemAdded, setItemAdded] = useState(0);
-    const [cartIcon, setCartIcon] = useState(false);
     const [isbn, setIsbn] = useState([]);
-    const [retrived, setRetrived] = useState([]);
+    const [retrived, setRetrived] = useState(cartlistStorage());
 
   // data fetch from onchange search to nav search drop down
   const fetchData = useCallback(async() => {
@@ -70,11 +81,17 @@ export function AppProvider({children}) {
     
   
   const addtocart = useCallback((isbn13) => {
-    setCartIcon(true);
     setItemAdded(itemAdded + 1);
-    setIsbn([...isbn, setIsbn]);
+    setIsbn([...isbn, isbn13]);
+  });
 
-  },[itemAdded]);
+  //singlebook fetch
+  const fetchBookData = useCallback(async() => {
+  const response = await fetch(`${bookurl}${isbn}`);
+  const dataFetch = await response.json();
+  console.log(dataFetch);
+    setRetrived(dataFetch);
+  }, [isbn]);   
 
 
   useEffect(() => {
@@ -88,6 +105,11 @@ export function AppProvider({children}) {
     localStorage.setItem('searchBookList', JSON.stringify(searchBookList));
   },[pagination, fetchDataBookList]);
 
+  useEffect(() => {
+    fetchBookData();
+    localStorage.setItem('retrived', JSON.stringify(retrived));
+  },[itemAdded,fetchBookData])
+
 
     return (
         <AppContext.Provider value={{
@@ -100,9 +122,9 @@ export function AppProvider({children}) {
             setConstantSearch,
             searchBookList,
             setPagination,
-            addtocart,
-            cartIcon,
-            itemAdded
+            itemAdded,
+            retrived,
+            addtocart
         }}>
             {children}
         </AppContext.Provider>

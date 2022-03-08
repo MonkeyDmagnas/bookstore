@@ -40,7 +40,6 @@ export default function SingleBook() {
     year,
     pages
   } = bookDetail;
-  
 
   return (
     <>
