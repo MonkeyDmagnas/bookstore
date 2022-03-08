@@ -1,17 +1,21 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React from 'react';
+import ReactPaginate from 'react-paginate';
 import { useGlobalContext } from '../../container/context';
 import './style.css';
 
 export default function SearchBooks() {
-  const {searchBookList, search} = useGlobalContext();
-  // console.log(searchBookList);
+  const {searchBookList, constantSearch, setPagination} = useGlobalContext();
+  
+  const handlePageClick = (data) => {
+    setPagination(data.selected +1);
+  }
 
   return (
     <>
       <section>
         <div className="container">
           <div className="searchtitle">
-              <h1>{`"${search}" search results`}</h1>
+              <h1>{`"${constantSearch}" search results`}</h1>
             <p>Found <strong>{searchBookList.total}</strong> books</p>
           </div>
         </div>
@@ -42,6 +46,19 @@ export default function SearchBooks() {
           );
         })}
       </section>
+      <div className="container">      
+        <ReactPaginate
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          pageCount={Math.ceil(searchBookList.total/10)}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={6}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          pageClassName={'selected'}
+        />
+      </div>
     </>
   )
 }

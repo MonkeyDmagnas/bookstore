@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
+import { useGlobalContext } from '../../container/context';
 import Banner from '../../components/banner/Banner';
 import './style.css';
 
@@ -12,6 +13,7 @@ const colors = {
 };
 
 export default function SingleBook() {
+  const {addtocart} = useGlobalContext();
   const [bookDetail, setBookDetail] = useState([]);
   const {isbn13} = useParams();
   const stars = Array(5).fill(0);
@@ -38,6 +40,7 @@ export default function SingleBook() {
     year,
     pages
   } = bookDetail;
+  
 
   return (
     <>
@@ -109,6 +112,14 @@ export default function SingleBook() {
                   <td>Description</td>
                   <td><strong>{desc}</strong></td>
                 </tr> 
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>
+                    <button className='button button1' onClick={()=>addtocart(isbn13)}>
+                      Add to Cart
+                    </button>
+                  </td>
+                </tr>                 
               </tbody>
             </table>
           </div>

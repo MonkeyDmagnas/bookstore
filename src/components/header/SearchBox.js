@@ -7,18 +7,21 @@ export default function SearchBox() {
     const resultLinkRef = useRef(null); 
     const searchRefContainer = useRef('');
     const {
-        search,
         setSearch,
         bookSearch,
         toggleLinks,
         setToogleLinks,
+        constantSearch,
+        setConstantSearch
     } = useGlobalContext();
 
     const navigateSearch = useNavigateSearch();
 
     const submitSearch = (e) => {
         e.preventDefault();
-        navigateSearch("/search", {q: `${search}`});
+        const searchSubmit = searchRefContainer.current.value;
+        setConstantSearch(searchSubmit);
+        navigateSearch("/search", {q: `${searchSubmit}`});
         setToogleLinks(false);
     }
     
@@ -55,6 +58,7 @@ export default function SearchBox() {
                         type='text'
                         className='input-search-box'
                         placeholder='Search by Book Names, author and Title'
+                        data={constantSearch}
                         ref={searchRefContainer}
                         onChange={searchData}
                         />
@@ -64,12 +68,11 @@ export default function SearchBox() {
                     <div className={toggleLinks ? 'search-result-container-active' : 'search-result-container'} ref={searchResultRef}>
                         <ul className='result-links' ref={resultLinkRef}>
                             {bookSearch.slice(0,6).map((searchLink) => {
-                            // console.log(navLinks);
                                 const {isbn13, title, image} = searchLink;
                                 return(
                                     <li key={isbn13}>
                                         <div className='eac-item'>                                        
-                                            <a href={`${title}`}>
+                                            <a href={`../search/?q=${title}`} onClick={()=>setConstantSearch(title)}>
                                                 <img src={image} alt={title} />
                                                 <p style={{padding: "0 0.8rem"}}>{title}</p>
                                             </a>

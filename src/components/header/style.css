@@ -118,6 +118,11 @@ header svg {
   align-items: center;
   justify-content: center;
 }
+
+.amount-circle {
+  overflow: hidden;
+}
+
 .total-amount {
   color: #eee;
   margin-bottom: 0;
