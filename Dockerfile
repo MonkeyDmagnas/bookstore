@@ -13,7 +13,7 @@ COPY package.json /bookstore/
 RUN npm install
 
 # Make port 8080 available to the world outside this container
-EXPOSE 8089
+EXPOSE 3000
 
 # Run the app when the container launches
 CMD ["npm", "start"]
