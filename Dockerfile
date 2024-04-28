@@ -1,19 +1,14 @@
-# Use an official Node.js runtime as the base image
-FROM node:current-alpine3.19
+FROM node:alpine AS development
 
-# Set the working directory in the container to /app
+ENV NODE_ENV development
+
 WORKDIR /bookstore
 
-# Copy the current directory contents into the container at /app
-COPY public/ /bookstore/public
-COPY src/ /bookstore/src
-COPY package.json /bookstore/
+COPY ./package*.json /bookstore
 
-# Install any needed packages specified in package.json
-RUN npm install
+RUN npm install -g
+RUN npm install react-scripts@latest
 
-# Make port 8080 available to the world outside this container
-EXPOSE 3000
+COPY . .
 
-# Run the app when the container launches
-CMD ["npm", "start"]
+CMD ["npm","start"]
